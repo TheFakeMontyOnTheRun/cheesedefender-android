@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent" android:background="#FF0000">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:background="#AA0000"
+        android:orientation="vertical"
+        android:paddingTop="10dp" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="fill_parent"
+            android:layout_height="0px"
+            android:layout_weight="3"
+            android:src="@drawable/mouseinvasion" />
+
+        <TextView
+            android:id="@+id/txtCredits"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Code and splash art by: Daniel Monteiro (MontyOnTheRun). Concept and game assets by: Iwan Gabovitch (Qubodup)"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <Button
+            android:id="@+id/btnStartGame"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dip"
+            android:text="Start" >
+</Button>
+    </LinearLayout>
+    
+</LinearLayout>
