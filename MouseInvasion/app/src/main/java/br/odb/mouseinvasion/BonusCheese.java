@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.odb.mouseinvasion;
 
@@ -22,74 +22,75 @@ public class BonusCheese extends GameObject implements Explosive {
 	static MediaPlayer spawnSound;
 	static MediaPlayer explodeSound;
 	static Bitmap cheese;
-	
+
 	private long explosionTime;
+
 	/**
-	 * 
+	 *
 	 */
 	public BonusCheese() {
 		super();
-		
-		
-		if ( cheese == null )
-			cheese = BitmapFactory.decodeResource( CheeseDefenderActivity.getInstance().getResources(), R.drawable.cheese );
-		
-		super.frames[ 0 ] = cheese;
-		
-		if ( killSound == null )
-			killSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.cheesestolen );
-		
-		if ( spawnSound == null )
-			spawnSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.upgradeappears );
-		
-		if ( explodeSound == null )
-			explodeSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.explosion );
-		
+
+
+		if (cheese == null)
+			cheese = BitmapFactory.decodeResource(CheeseDefenderActivity.getInstance().getResources(), R.drawable.cheese);
+
+		super.frames[0] = cheese;
+
+		if (killSound == null)
+			killSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.cheesestolen);
+
+		if (spawnSound == null)
+			spawnSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.upgradeappears);
+
+		if (explodeSound == null)
+			explodeSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.explosion);
+
 		spawnSound.start();
 	}
-	
+
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
-	
-		if ( explosionTime > 0 ) {
-			paint.setStyle( Style.FILL_AND_STROKE );
-			paint.setARGB( (int) (( 255 * explosionTime  ) / 2000), 255, 255, 0 );
-			canvas.drawCircle( super.position.x, super.position.y, explosionTime / 50, paint );
+
+		if (explosionTime > 0) {
+			paint.setStyle(Style.FILL_AND_STROKE);
+			paint.setARGB((int) ((255 * explosionTime) / 2000), 255, 255, 0);
+			canvas.drawCircle(super.position.x, super.position.y, explosionTime / 50, paint);
 		} else {
 			super.draw(canvas, paint);
 		}
 	}
-	
+
 
 	@Override
 	public void update(long delta) {
-		
-		if ( !active )
+
+		if (!active)
 			return;
-		
-		if ( isExploding() ) {	
+
+		if (isExploding()) {
 			explosionTime -= delta;
-			
+
 			//não esta mais explodindo...
-			if ( !isExploding() ) {
+			if (!isExploding()) {
 				active = false;
 			}
-		}			
+		}
 
-		
+
 		super.update(delta);
 	}
-	
+
 	public void kill() {
-		
+
 		active = false;
 		visible = false;
-		
-		if ( CheeseDefenderView.cheesePosition > 50 )
+
+		if (CheeseDefenderView.cheesePosition > 50)
 			CheeseDefenderView.cheesePosition -= 50;
 		else
 			CheeseDefenderView.cheesePosition = 0;
-		
+
 		killSound.start();
 	}
 
@@ -99,7 +100,7 @@ public class BonusCheese extends GameObject implements Explosive {
 		explodeSound.start();
 		kill();
 	}
-	
+
 	public boolean isExploding() {
 
 		return explosionTime > 0;
@@ -122,14 +123,14 @@ public class BonusCheese extends GameObject implements Explosive {
 		int x = go.position.x - getPosition().x;
 		int y = go.position.y - getPosition().y;
 
-		if ( isExploding() )
-			return (FloatMath.sqrt(( x * x) + ( y * y)) < ( getExplosionTime() / 50));
+		if (isExploding())
+			return (FloatMath.sqrt((x * x) + (y * y)) < (getExplosionTime() / 50));
 		else
-			return (FloatMath.sqrt(( x * x) + ( y * y)) < ( 20 ) );
+			return (FloatMath.sqrt((x * x) + (y * y)) < (20));
 	}
 
 	@Override
 	public boolean isArmed() {
 		return true;
-	}	
+	}
 }

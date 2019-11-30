@@ -8,5 +8,5 @@ package br.odb.mouseinvasion;
  *
  */
 public interface Updatable {
-	public void update( long delta );
+	void update(long delta);
 }

@@ -9,13 +9,13 @@ public class GameObject extends Sprite {
 
 	@Override
 	public void update(long delta) {
-		super.update( delta );
+		super.update(delta);
 
 	}
 
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
-		super.draw( canvas, paint );
+		super.draw(canvas, paint);
 	}
 
 	public void kill() {

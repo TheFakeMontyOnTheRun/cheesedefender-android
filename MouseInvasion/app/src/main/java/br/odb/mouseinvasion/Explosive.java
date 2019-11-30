@@ -10,10 +10,15 @@ import android.graphics.Point;
  *
  */
 public interface Explosive {
-	public long getExplosionTime();
-	public void explode();
-	public boolean isExploding();
-	public Point getPosition();
-	public boolean isHit(GameObject go);
-	public boolean isArmed();
+	long getExplosionTime();
+
+	void explode();
+
+	boolean isExploding();
+
+	Point getPosition();
+
+	boolean isHit(GameObject go);
+
+	boolean isArmed();
 }

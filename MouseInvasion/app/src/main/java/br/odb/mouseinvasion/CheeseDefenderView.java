@@ -3,8 +3,6 @@
  */
 package br.odb.mouseinvasion;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,6 +14,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
+import java.util.ArrayList;
+
 /**
  * @author monty
  *
@@ -23,53 +23,17 @@ import android.view.View.OnTouchListener;
 public class CheeseDefenderView extends View implements Updatable,
 		OnTouchListener {
 	private static final long SECONDS_2 = 1000;
+	public static int cheesePosition;
+	private static CheeseDefenderView instance;
+	long t0;
+	long t1;
+	long timeSinceLastLaunch = 1000;
 	private Paint paint;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<GameObject> recycleList;
 	private long gameTime;
-	public static int cheesePosition;
-	long t0;
-	long t1;
-	long timeSinceLastLaunch = 1000;
 	private Context context;
 	private long tally;
-	private static CheeseDefenderView instance;
-
-	public GameObject addEntity(int x, int y, int kind) {
-		GameObject go;
-
-		if (kind == 1)
-			go = new Rocket();
-		else if (kind == 0)
-			go = new Mouse();
-		else if  ( kind == 2 ) {
-			go = new BonusCheese();
-		} else {
-			go = new BeamCheese( kind );
-		}
-
-		if ( x < cheesePosition && go instanceof Explosive ) {
-			( ( Explosive ) go ).explode();
-		}
-
-		go.position.x = x;
-		go.position.y = y;
-		gameObjects.add(go);
-
-		return go;
-	}
-
-	public void init(Context context) {
-		instance = this;
-		this.context = context;
-		gameTime = 0;
-		t0 = System.currentTimeMillis();
-		cheesePosition = 0;
-		paint = new Paint();
-		gameObjects = new ArrayList<GameObject>();
-		recycleList = new ArrayList<GameObject>();
-		setOnTouchListener(this);
-	}
 
 	/**
 	 * @param context
@@ -98,6 +62,47 @@ public class CheeseDefenderView extends View implements Updatable,
 		init(context);
 	}
 
+	public static CheeseDefenderView getInstance() {
+
+		return instance;
+	}
+
+	public GameObject addEntity(int x, int y, int kind) {
+		GameObject go;
+
+		if (kind == 1)
+			go = new Rocket();
+		else if (kind == 0)
+			go = new Mouse();
+		else if (kind == 2) {
+			go = new BonusCheese();
+		} else {
+			go = new BeamCheese(kind);
+		}
+
+		if (x < cheesePosition && go instanceof Explosive) {
+			((Explosive) go).explode();
+		}
+
+		go.position.x = x;
+		go.position.y = y;
+		gameObjects.add(go);
+
+		return go;
+	}
+
+	public void init(Context context) {
+		instance = this;
+		this.context = context;
+		gameTime = 0;
+		t0 = System.currentTimeMillis();
+		cheesePosition = 0;
+		paint = new Paint();
+		gameObjects = new ArrayList<GameObject>();
+		recycleList = new ArrayList<GameObject>();
+		setOnTouchListener(this);
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -109,7 +114,7 @@ public class CheeseDefenderView extends View implements Updatable,
 
 		canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
 
-		drawBackground( canvas, paint );
+		drawBackground(canvas, paint);
 
 		for (int c = 0; c < gameObjects.size(); ++c) {
 			go = gameObjects.get(c);
@@ -119,25 +124,25 @@ public class CheeseDefenderView extends View implements Updatable,
 		canvas.drawLine(cheesePosition, 0, cheesePosition, getHeight(), paint);
 	}
 
-	private void drawBackground( Canvas canvas, Paint paint ) {
+	private void drawBackground(Canvas canvas, Paint paint) {
 
-		paint.setStyle(Style.FILL_AND_STROKE );
-		paint.setColor( 0xFF000000 );
-		canvas.drawCircle( getWidth() / 2, getHeight() * 1.5f, getWidth() / 2, paint );
+		paint.setStyle(Style.FILL_AND_STROKE);
+		paint.setColor(0xFF000000);
+		canvas.drawCircle(getWidth() / 2, getHeight() * 1.5f, getWidth() / 2, paint);
 
-		paint.setColor( 0xFFFFFFFF );
-		canvas.drawCircle( getWidth() / 2, getHeight() / 4, 16, paint );
+		paint.setColor(0xFFFFFFFF);
+		canvas.drawCircle(getWidth() / 2, getHeight() / 4, 16, paint);
 
 		paint.setStyle(Style.STROKE);
 
-		for ( int c = 0; c < 15; ++c ) {
+		for (int c = 0; c < 15; ++c) {
 
-			paint.setColor( 0xFF000000 + ( c * ( 0xFF / 15 ) ) );
-			canvas.drawCircle( getWidth() / 2, (getHeight() * 1.5f) - c, getWidth() / 2, paint );
+			paint.setColor(0xFF000000 + (c * (0xFF / 15)));
+			canvas.drawCircle(getWidth() / 2, (getHeight() * 1.5f) - c, getWidth() / 2, paint);
 		}
 
-		paint.setColor( 0xFFFFFFFF );
-		canvas.drawCircle( getWidth() / 2, (getHeight() * 1.5f) - 16, getWidth() / 2, paint );
+		paint.setColor(0xFFFFFFFF);
+		canvas.drawCircle(getWidth() / 2, (getHeight() * 1.5f) - 16, getWidth() / 2, paint);
 
 	}
 
@@ -165,29 +170,29 @@ public class CheeseDefenderView extends View implements Updatable,
 			}
 
 
-			if ( gameObjects.get(c) instanceof Explosive ) {
+			if (gameObjects.get(c) instanceof Explosive) {
 
 				rocket = (Explosive) gameObjects.get(c);
 
-				if ( rocket.isArmed() ) {
+				if (rocket.isArmed()) {
 
 					for (int d = 0; d < gameObjects.size(); ++d) {
 
 						go = gameObjects.get(d);
 
-						if ( go == rocket )
+						if (go == rocket)
 							continue;
 
 						if (!go.active)
 							continue;
 
-						if ( rocket.isHit( go ) ) {
+						if (rocket.isHit(go)) {
 
 							if (gameObjects.get(d) instanceof Mouse) {
 								tally++;
 								gameObjects.get(d).kill();
 
-								if ( !rocket.isExploding() )
+								if (!rocket.isExploding())
 									rocket.explode();
 
 								killed = true;
@@ -213,9 +218,9 @@ public class CheeseDefenderView extends View implements Updatable,
 			addEntity(getWidth(), (int) (Math.random() * getHeight()), 0);
 		}
 
-		if ( tally % 11 == 10 && killed ) {
+		if (tally % 11 == 10 && killed) {
 			addEntity((int) (Math.random() * getWidth()),
-					(int) (Math.random() * getHeight()), ( int )( ( Math.random() * 4 ) + 2 ) );
+					(int) (Math.random() * getHeight()), (int) ((Math.random() * 4) + 2));
 		}
 
 
@@ -240,7 +245,6 @@ public class CheeseDefenderView extends View implements Updatable,
 			});
 		}
 	}
-
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -269,10 +273,5 @@ public class CheeseDefenderView extends View implements Updatable,
 		toReturn.target.y = targetY;
 		gameObjects.add(toReturn);
 		return toReturn;
-	}
-
-	public static CheeseDefenderView getInstance() {
-
-		return instance;
 	}
 }

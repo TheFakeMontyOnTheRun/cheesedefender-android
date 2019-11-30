@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.odb.mouseinvasion;
 
@@ -19,20 +19,21 @@ public class Sprite implements Renderable, Updatable {
 	public int frameCount = 1;
 	public Point position;
 	public boolean visible;
+
 	public Sprite() {
-		position = new Point( 0, 0 );
-		frames = new Bitmap[ 1 ];
-		frames[ 0 ] = BitmapFactory.decodeResource( CheeseDefenderActivity.getInstance().getResources(), R.drawable.icon );
+		position = new Point(0, 0);
+		frames = new Bitmap[1];
+		frames[0] = BitmapFactory.decodeResource(CheeseDefenderActivity.getInstance().getResources(), R.drawable.icon);
 		visible = true;
 	}
-	
-	
+
+
 	/* (non-Javadoc)
 	 * @see br.odb.mouseinvasion.Updatable#update(long)
 	 */
 	@Override
 	public void update(long delta) {
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -40,12 +41,12 @@ public class Sprite implements Renderable, Updatable {
 	 */
 	@Override
 	public void draw(Canvas canvas, Paint paint) {
-		if ( visible ) {
-			
-			canvas.drawBitmap( frames[ frame ], position.x, position.y, null );
-			frame = ( frame + 1 ) % frameCount;
+		if (visible) {
+
+			canvas.drawBitmap(frames[frame], position.x, position.y, null);
+			frame = (frame + 1) % frameCount;
 		}
-		
+
 	}
 
 }

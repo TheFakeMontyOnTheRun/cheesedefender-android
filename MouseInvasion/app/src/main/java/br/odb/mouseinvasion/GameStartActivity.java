@@ -12,88 +12,90 @@ public class GameStartActivity extends Activity implements OnClickListener {
 
 	MediaPlayer mp;
 
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+	/**
+	 * Called when the activity is first created.
+	 */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-        setContentView( R.layout.startgamelayout );
+		setContentView(R.layout.startgamelayout);
 
-        Button btn = (Button) findViewById( R.id.btnStartGame );
-        btn.setOnClickListener( this );
+		Button btn = (Button) findViewById(R.id.btnStartGame);
+		btn.setOnClickListener(this);
 	}
 
-   @Override
-   protected void onPause() {
+	@Override
+	protected void onPause() {
 
-	   if ( mp != null )
-		   mp.pause();
+		if (mp != null)
+			mp.pause();
 
-	   mp = null;
+		mp = null;
 
-	   super.onPause();
-   }
+		super.onPause();
+	}
 
-   @Override
-   protected void onDestroy() {
+	@Override
+	protected void onDestroy() {
 
-	   if ( mp != null )
-		   mp.pause();
+		if (mp != null)
+			mp.pause();
 
-	   mp = null;
+		mp = null;
 
-	   super.onDestroy();
-   }
+		super.onDestroy();
+	}
 
-   @Override
-   protected void onStop() {
+	@Override
+	protected void onStop() {
 
-	   if ( mp != null )
-		   mp.pause();
+		if (mp != null)
+			mp.pause();
 
-	   mp = null;
+		mp = null;
 
-	   super.onStop();
-   }
+		super.onStop();
+	}
 
 
-   @Override
-   protected void onResume() {
+	@Override
+	protected void onResume() {
 
 		super.onResume();
-	    mp = MediaPlayer.create( this, R.raw.rvalkyri );
-	    mp.setLooping( true );
-	    mp.start();
-   }
+		mp = MediaPlayer.create(this, R.raw.rvalkyri);
+		mp.setLooping(true);
+		mp.start();
+	}
 
 	@Override
 	public void onClick(View arg0) {
-		Intent intent= new Intent( getBaseContext(), CheeseDefenderActivity.class );
-		startActivityForResult( intent, 1 );
+		Intent intent = new Intent(getBaseContext(), CheeseDefenderActivity.class);
+		startActivityForResult(intent, 1);
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == 1) {
 
-		     if(resultCode == RESULT_OK) {
+			if (resultCode == RESULT_OK) {
 
 				String result = data.getStringExtra("result");
 
-				Intent intent= new Intent( this, GameOverActivity.class );
+				Intent intent = new Intent(this, GameOverActivity.class);
 
 				Bundle bundle = new Bundle();
-				bundle.putString( "result", result );
-				bundle.putString( "tally", data.getStringExtra("tally") );
-				intent.putExtras( bundle );
+				bundle.putString("result", result);
+				bundle.putString("tally", data.getStringExtra("tally"));
+				intent.putExtras(bundle);
 
-				this.startActivity( intent );
-		     }
+				this.startActivity(intent);
+			}
 		}
 
 		if (resultCode == RESULT_CANCELED) {
 
-		     //Write your code on no result return
+			//Write your code on no result return
 
 		}
 	}

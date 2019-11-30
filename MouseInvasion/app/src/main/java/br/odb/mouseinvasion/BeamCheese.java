@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.odb.mouseinvasion;
 
@@ -11,17 +11,17 @@ import android.graphics.Paint.Style;
 
 /**
  * @author monty
- * 
+ *
  */
 public class BeamCheese extends BonusCheese {
 
-	private int kind;
 	private static Bitmap vertical;
 	private static Bitmap horizontal;
 	private static Bitmap multi;
+	private int kind;
 
 	/**
-	 * 
+	 *
 	 */
 	public BeamCheese(int kind) {
 		super();
@@ -41,15 +41,15 @@ public class BeamCheese extends BonusCheese {
 		this.kind = kind;
 
 		switch (kind) {
-		case 3:
-			super.frames[0] = horizontal;
-			break;
-		case 4:
-			super.frames[0] = vertical;
-			break;
-		case 5:
-			super.frames[0] = multi;
-			break;
+			case 3:
+				super.frames[0] = horizontal;
+				break;
+			case 4:
+				super.frames[0] = vertical;
+				break;
+			case 5:
+				super.frames[0] = multi;
+				break;
 		}
 	}
 
@@ -59,17 +59,17 @@ public class BeamCheese extends BonusCheese {
 
 		if (isExploding()) {
 			switch (kind) {
-			case 3:
-				beamHit = ((go.position.y >= (position.y - 10)) && (go.position.y <= (position.y + 10)));
-				break;
-			case 4:
-				beamHit = ((go.position.x >= (position.x - 10)) && (go.position.x <= (position.x + 10)));
-				break;
-			default:
-				beamHit = ((go.position.y >= (position.y - 10)) && (go.position.y <= (position.y + 10)));
-				beamHit = beamHit
-						|| (((go.position.x >= (position.x - 10)) && (go.position.x <= (position.x + 10))));
-				break;
+				case 3:
+					beamHit = ((go.position.y >= (position.y - 10)) && (go.position.y <= (position.y + 10)));
+					break;
+				case 4:
+					beamHit = ((go.position.x >= (position.x - 10)) && (go.position.x <= (position.x + 10)));
+					break;
+				default:
+					beamHit = ((go.position.y >= (position.y - 10)) && (go.position.y <= (position.y + 10)));
+					beamHit = beamHit
+							|| (((go.position.x >= (position.x - 10)) && (go.position.x <= (position.x + 10))));
+					break;
 			}
 		} else {
 			beamHit = false;

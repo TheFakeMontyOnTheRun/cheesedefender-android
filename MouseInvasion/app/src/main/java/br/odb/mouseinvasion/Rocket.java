@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.odb.mouseinvasion;
 
@@ -14,17 +14,51 @@ import android.util.FloatMath;
 
 /**
  * @author monty
- * 
+ *
  */
 public class Rocket extends GameObject implements Explosive {
 
-	public Point target;
-	private long explosionTime;
 	static MediaPlayer fireSound;
 	static MediaPlayer explodeSound;
 	static Bitmap targetMark;
 	static Bitmap rocket1;
 	static Bitmap rocket2;
+	public Point target;
+	private long explosionTime;
+
+	public Rocket() {
+		super();
+		target = new Point();
+		explosionTime = 0;
+		super.frameCount = 2;
+		super.frames = new Bitmap[frameCount];
+
+		if (rocket1 == null)
+			rocket1 = BitmapFactory.decodeResource(CheeseDefenderActivity
+					.getInstance().getResources(), R.drawable.rocket1);
+
+		if (rocket2 == null)
+			rocket2 = BitmapFactory.decodeResource(CheeseDefenderActivity
+					.getInstance().getResources(), R.drawable.rocket2);
+
+		super.frames[0] = rocket1;
+		super.frames[1] = rocket2;
+
+		if (targetMark == null) {
+			targetMark = BitmapFactory.decodeResource(CheeseDefenderActivity
+					.getInstance().getResources(), R.drawable.target);
+		}
+
+		if (fireSound == null)
+			fireSound = MediaPlayer.create(
+					CheeseDefenderActivity.getInstance(), R.raw.rocketlaunch);
+
+		if (explodeSound == null)
+			explodeSound = MediaPlayer.create(
+					CheeseDefenderActivity.getInstance(), R.raw.explosion);
+
+		fireSound.start();
+	}
 
 	@Override
 	public void update(long delta) {
@@ -59,40 +93,6 @@ public class Rocket extends GameObject implements Explosive {
 			if (visible)
 				canvas.drawBitmap(targetMark, target.x, target.y, null);
 		}
-	}
-
-	public Rocket() {
-		super();
-		target = new Point();
-		explosionTime = 0;
-		super.frameCount = 2;
-		super.frames = new Bitmap[frameCount];
-
-		if (rocket1 == null)
-			rocket1 = BitmapFactory.decodeResource(CheeseDefenderActivity
-					.getInstance().getResources(), R.drawable.rocket1);
-
-		if (rocket2 == null)
-			rocket2 = BitmapFactory.decodeResource(CheeseDefenderActivity
-					.getInstance().getResources(), R.drawable.rocket2);
-
-		super.frames[0] = rocket1;
-		super.frames[1] = rocket2;
-
-		if (targetMark == null) {
-			targetMark = BitmapFactory.decodeResource(CheeseDefenderActivity
-					.getInstance().getResources(), R.drawable.target);
-		}
-
-		if (fireSound == null)
-			fireSound = MediaPlayer.create(
-					CheeseDefenderActivity.getInstance(), R.raw.rocketlaunch);
-
-		if (explodeSound == null)
-			explodeSound = MediaPlayer.create(
-					CheeseDefenderActivity.getInstance(), R.raw.explosion);
-
-		fireSound.start();
 	}
 
 	public long getExplosionTime() {
