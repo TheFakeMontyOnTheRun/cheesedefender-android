@@ -9,57 +9,57 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class GameStartActivity extends Activity implements OnClickListener {
-	
+
 	MediaPlayer mp;
-	
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         setContentView( R.layout.startgamelayout );
-        
+
         Button btn = (Button) findViewById( R.id.btnStartGame );
         btn.setOnClickListener( this );
 	}
-    
+
    @Override
    protected void onPause() {
-	   
+
 	   if ( mp != null )
 		   mp.pause();
-	   
+
 	   mp = null;
-	   
+
 	   super.onPause();
    }
-   
+
    @Override
    protected void onDestroy() {
 
 	   if ( mp != null )
 		   mp.pause();
-	   
+
 	   mp = null;
-	   
+
 	   super.onDestroy();
    }
-   
+
    @Override
    protected void onStop() {
-	   
+
 	   if ( mp != null )
 		   mp.pause();
-	   
+
 	   mp = null;
-	   
+
 	   super.onStop();
    }
-   
-   
+
+
    @Override
    protected void onResume() {
-	
+
 		super.onResume();
 	    mp = MediaPlayer.create( this, R.raw.rvalkyri );
 	    mp.setLooping( true );
@@ -71,29 +71,29 @@ public class GameStartActivity extends Activity implements OnClickListener {
 		Intent intent= new Intent( getBaseContext(), CheeseDefenderActivity.class );
 		startActivityForResult( intent, 1 );
 	}
-	
+
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == 1) {
 
 		     if(resultCode == RESULT_OK) {
-		    	 
+
 				String result = data.getStringExtra("result");
-				
-				Intent intent= new Intent( this, GameOverActivity.class );			
-				
+
+				Intent intent= new Intent( this, GameOverActivity.class );
+
 				Bundle bundle = new Bundle();
 				bundle.putString( "result", result );
 				bundle.putString( "tally", data.getStringExtra("tally") );
-				intent.putExtras( bundle );				
-				
+				intent.putExtras( bundle );
+
 				this.startActivity( intent );
 		     }
 		}
 
 		if (resultCode == RESULT_CANCELED) {
 
-		     //Write your code on no result return 
+		     //Write your code on no result return
 
 		}
 	}

@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package br.odb.mouseinvasion;
 
@@ -18,7 +18,7 @@ import android.view.View.OnTouchListener;
 
 /**
  * @author monty
- * 
+ *
  */
 public class CheeseDefenderView extends View implements Updatable,
 		OnTouchListener {
@@ -34,7 +34,7 @@ public class CheeseDefenderView extends View implements Updatable,
 	private Context context;
 	private long tally;
 	private static CheeseDefenderView instance;
-	
+
 	public GameObject addEntity(int x, int y, int kind) {
 		GameObject go;
 
@@ -42,16 +42,16 @@ public class CheeseDefenderView extends View implements Updatable,
 			go = new Rocket();
 		else if (kind == 0)
 			go = new Mouse();
-		else if  ( kind == 2 ) {			
-			go = new BonusCheese();			
+		else if  ( kind == 2 ) {
+			go = new BonusCheese();
 		} else {
 			go = new BeamCheese( kind );
 		}
 
-		if ( x < cheesePosition && go instanceof Explosive ) {				
+		if ( x < cheesePosition && go instanceof Explosive ) {
 			( ( Explosive ) go ).explode();
-		}				
-		
+		}
+
 		go.position.x = x;
 		go.position.y = y;
 		gameObjects.add(go);
@@ -108,7 +108,7 @@ public class CheeseDefenderView extends View implements Updatable,
 		paint.setColor(Color.BLACK);
 
 		canvas.drawRect(0, 0, getWidth(), getHeight(), paint);
-		
+
 		drawBackground( canvas, paint );
 
 		for (int c = 0; c < gameObjects.size(); ++c) {
@@ -124,21 +124,21 @@ public class CheeseDefenderView extends View implements Updatable,
 		paint.setStyle(Style.FILL_AND_STROKE );
 		paint.setColor( 0xFF000000 );
 		canvas.drawCircle( getWidth() / 2, getHeight() * 1.5f, getWidth() / 2, paint );
-		
+
 		paint.setColor( 0xFFFFFFFF );
 		canvas.drawCircle( getWidth() / 2, getHeight() / 4, 16, paint );
-		
+
 		paint.setStyle(Style.STROKE);
 
 		for ( int c = 0; c < 15; ++c ) {
-			
+
 			paint.setColor( 0xFF000000 + ( c * ( 0xFF / 15 ) ) );
 			canvas.drawCircle( getWidth() / 2, (getHeight() * 1.5f) - c, getWidth() / 2, paint );
 		}
-		
+
 		paint.setColor( 0xFFFFFFFF );
 		canvas.drawCircle( getWidth() / 2, (getHeight() * 1.5f) - 16, getWidth() / 2, paint );
-		
+
 	}
 
 	@Override
@@ -174,24 +174,24 @@ public class CheeseDefenderView extends View implements Updatable,
 					for (int d = 0; d < gameObjects.size(); ++d) {
 
 						go = gameObjects.get(d);
-						
+
 						if ( go == rocket )
 							continue;
 
 						if (!go.active)
 							continue;
-						
+
 						if ( rocket.isHit( go ) ) {
 
 							if (gameObjects.get(d) instanceof Mouse) {
 								tally++;
 								gameObjects.get(d).kill();
-								
+
 								if ( !rocket.isExploding() )
 									rocket.explode();
-								
+
 								killed = true;
-								
+
 							} else if (gameObjects.get(d) instanceof Explosive) {
 								if (!((Explosive) gameObjects.get(d))
 										.isExploding())
@@ -217,7 +217,7 @@ public class CheeseDefenderView extends View implements Updatable,
 			addEntity((int) (Math.random() * getWidth()),
 					(int) (Math.random() * getHeight()), ( int )( ( Math.random() * 4 ) + 2 ) );
 		}
-		
+
 
 		if (cheesePosition >= getWidth()) {
 

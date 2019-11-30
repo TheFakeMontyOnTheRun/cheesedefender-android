@@ -8,11 +8,11 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
 	private CheeseDefenderView gameView;
 	private Thread updateThread;
 	private static CheeseDefenderActivity instance;
-	
+
 	public static CheeseDefenderActivity getInstance() {
 		return instance;
 	}
-	
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,16 +20,16 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
         instance = this;
         running = true;
         gameView = new CheeseDefenderView( this );
-        
+
         setContentView( gameView );
-        
+
         updateThread = new Thread( this );
         updateThread.start();
     }
-    
+
     public void onDestroy() {
     	running = false;
-    	
+
     	super.onDestroy();
     }
 
@@ -44,12 +44,12 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
 				e.printStackTrace();
 			}
 			t1 = System.currentTimeMillis();
-			
+
 			if ( gameView != null/* && gameView.hasFocus() */) {
 				gameView.update( t1 - t0 );
 				gameView.postInvalidate();
 			}
-			
+
 			t0 = System.currentTimeMillis();
 		}
 	}

@@ -4,13 +4,13 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 
 public class GameObject extends Sprite {
-	
+
 	boolean active = true;
-	
+
 	@Override
 	public void update(long delta) {
 		super.update( delta );
-		
+
 	}
 
 	@Override
@@ -20,6 +20,6 @@ public class GameObject extends Sprite {
 
 	public void kill() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

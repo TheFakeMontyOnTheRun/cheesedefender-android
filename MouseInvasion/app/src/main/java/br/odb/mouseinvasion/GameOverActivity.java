@@ -11,31 +11,31 @@ import android.widget.TextView;
 
 
 public class GameOverActivity extends Activity implements OnClickListener {
-	
+
     private MediaPlayer mp;
 
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-	
+
         setContentView( R.layout.gameoverlayout );
-        
+
         Button btn = (Button) findViewById( R.id.btnOk );
         btn.setOnClickListener( this );
-        
+
         TextView tvTime;
         tvTime = (TextView) findViewById( R.id.tvTime );
-        
+
         tvTime.setText( "You survived for: " + getIntent().getStringExtra( "result") + " seconds! And you destroyed " + getIntent().getStringExtra( "tally") + " invaders!" );
         mp = MediaPlayer.create( this, R.raw.sugarplumfairy );
         mp.start();
         mp.setLooping( true );
 	}
-    
+
     @Override
     protected void onDestroy() {
-    
+
     	mp.pause();
     	mp.stop();
     	super.onDestroy();
