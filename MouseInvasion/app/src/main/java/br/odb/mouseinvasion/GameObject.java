@@ -1,6 +1,6 @@
 package br.odb.mouseinvasion;
 
-public abstract class GameObject extends Sprite {
+abstract class GameObject extends Sprite {
 
 	boolean active = true;
 

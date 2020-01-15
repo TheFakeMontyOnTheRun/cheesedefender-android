@@ -16,8 +16,8 @@ public class Mouse extends GameObject implements Explosive {
 	private static MediaPlayer alarmSound;
 	private static Bitmap mouse1;
 	private static Bitmap mouse2;
-	boolean alive = true;
-	int speed = 5;
+	private boolean alive = true;
+	private final int speed;
 	private long explosionTime;
 
 	public Mouse() {
