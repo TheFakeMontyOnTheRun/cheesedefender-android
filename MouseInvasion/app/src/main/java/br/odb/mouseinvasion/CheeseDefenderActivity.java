@@ -1,7 +1,12 @@
 package br.odb.mouseinvasion;
 
 import android.app.Activity;
+import android.os.Build;
 import android.os.Bundle;
+
+import static android.view.View.SYSTEM_UI_FLAG_FULLSCREEN;
+import static android.view.View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+import static android.view.View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
 
 public class CheeseDefenderActivity extends Activity implements Runnable {
 	public static boolean running = true;
@@ -23,10 +28,21 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
 		running = true;
 		gameView = new CheeseDefenderView(this);
 
+		if (Build.VERSION.SDK_INT >= 29) {
+			enterStickyImmersiveMode();
+		} else {
+			getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_FULLSCREEN);
+		}
+
+
 		setContentView(gameView);
 
 		updateThread = new Thread(this);
 		updateThread.start();
+	}
+
+	private void enterStickyImmersiveMode() {
+		getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_IMMERSIVE_STICKY | SYSTEM_UI_FLAG_FULLSCREEN | SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 	}
 
 	public void onDestroy() {

@@ -15,6 +15,7 @@
 
 		<activity
 			android:name=".GameStartActivity"
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
 			android:label="Cheese Defender"
 			android:screenOrientation="landscape">
 			<intent-filter>
@@ -31,11 +32,12 @@
 
 		<activity
 			android:name=".GameOverActivity"
-			android:label="I, for one, welcome our new space-rodent-overlords."
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
 			android:screenOrientation="landscape" />
 
 		<activity
 			android:name=".CheeseDefenderActivity"
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
 			android:screenOrientation="landscape" />
 
 
