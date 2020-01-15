@@ -79,7 +79,7 @@ public class CheeseDefenderView extends View implements Updatable,
 		this.context = context;
 		gameTime = 0;
 		t0 = System.currentTimeMillis();
-		cheesePosition = 0;
+		cheesePosition = 10;
 		paint = new Paint();
 		gameObjects = new ArrayList<>();
 		recycleList = new ArrayList<>();
@@ -105,6 +105,13 @@ public class CheeseDefenderView extends View implements Updatable,
 		}
 		paint.setColor(Color.YELLOW);
 		canvas.drawLine(cheesePosition, 0, cheesePosition, getHeight(), paint);
+
+		paint.setStyle(Style.FILL_AND_STROKE);
+		paint.setColor(Color.GREEN);
+		canvas.drawRect(0, ((getHeight() )) - ((getHeight() * timeSinceLastLaunch) / SECONDS_2), 10, getHeight(), paint);
+
+		paint.setTextSize(20);
+		canvas.drawText("Score: " + tally, getWidth() / 2, getHeight() - 10, paint);
 	}
 
 	private void drawBackground(Canvas canvas, Paint paint) {
