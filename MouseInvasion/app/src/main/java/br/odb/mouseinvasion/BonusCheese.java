@@ -1,6 +1,3 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 import android.graphics.Bitmap;
@@ -17,10 +14,10 @@ import android.media.MediaPlayer;
  */
 public class BonusCheese extends GameObject implements Explosive {
 
-	static MediaPlayer killSound;
-	static MediaPlayer spawnSound;
-	static MediaPlayer explodeSound;
-	static Bitmap cheese;
+	private static MediaPlayer killSound;
+	private static MediaPlayer spawnSound;
+	private static MediaPlayer explodeSound;
+	private static Bitmap cheese;
 
 	private long explosionTime;
 

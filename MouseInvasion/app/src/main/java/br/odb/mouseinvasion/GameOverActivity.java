@@ -23,11 +23,11 @@ public class GameOverActivity extends Activity implements OnClickListener {
 
 		setContentView(R.layout.gameoverlayout);
 
-		Button btn = (Button) findViewById(R.id.btnOk);
+		Button btn = findViewById(R.id.btnOk);
 		btn.setOnClickListener(this);
 
 		TextView tvTime;
-		tvTime = (TextView) findViewById(R.id.tvTime);
+		tvTime = findViewById(R.id.tvTime);
 
 		tvTime.setText("You survived for: " + getIntent().getStringExtra("result") + " seconds! And you destroyed " + getIntent().getStringExtra("tally") + " invaders!");
 		mp = MediaPlayer.create(this, R.raw.sugarplumfairy);

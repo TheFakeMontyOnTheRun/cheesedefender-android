@@ -1,6 +1,3 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 import android.app.Activity;
@@ -25,9 +22,9 @@ public class CheeseDefenderView extends View implements Updatable,
 	private static final long SECONDS_2 = 1000;
 	public static int cheesePosition;
 	private static CheeseDefenderView instance;
-	long t0;
-	long t1;
-	long timeSinceLastLaunch = 1000;
+	private long t0;
+	private long t1;
+	private long timeSinceLastLaunch = 1000;
 	private Paint paint;
 	private ArrayList<GameObject> gameObjects;
 	private ArrayList<GameObject> recycleList;
@@ -35,39 +32,26 @@ public class CheeseDefenderView extends View implements Updatable,
 	private Context context;
 	private long tally;
 
-	/**
-	 * @param context
-	 */
 	public CheeseDefenderView(Context context) {
 		super(context);
 		init(context);
 	}
 
-	/**
-	 * @param context
-	 * @param attrs
-	 */
 	public CheeseDefenderView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		init(context);
 	}
 
-	/**
-	 * @param context
-	 * @param attrs
-	 * @param defStyle
-	 */
 	public CheeseDefenderView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		init(context);
 	}
 
 	public static CheeseDefenderView getInstance() {
-
 		return instance;
 	}
 
-	public GameObject addEntity(int x, int y, int kind) {
+	private void addEntity(int x, int y, int kind) {
 		GameObject go;
 
 		if (kind == 1)
@@ -88,18 +72,17 @@ public class CheeseDefenderView extends View implements Updatable,
 		go.position.y = y;
 		gameObjects.add(go);
 
-		return go;
 	}
 
-	public void init(Context context) {
+	private void init(Context context) {
 		instance = this;
 		this.context = context;
 		gameTime = 0;
 		t0 = System.currentTimeMillis();
 		cheesePosition = 0;
 		paint = new Paint();
-		gameObjects = new ArrayList<GameObject>();
-		recycleList = new ArrayList<GameObject>();
+		gameObjects = new ArrayList<>();
+		recycleList = new ArrayList<>();
 		setOnTouchListener(this);
 	}
 
@@ -254,11 +237,11 @@ public class CheeseDefenderView extends View implements Updatable,
 
 		timeSinceLastLaunch = 0;
 
-		GameObject go = addRocket(cheesePosition, (int) event.getY(),
+		Rocket go = addRocket(cheesePosition, (int) event.getY(),
 				(int) event.getX(), (int) event.getY());
 
-		((Rocket) go).target.x = (int) Math.max(event.getX(), cheesePosition);
-		((Rocket) go).target.y = (int) event.getY();
+		go.target.x = (int) Math.max(event.getX(), cheesePosition);
+		go.target.y = (int) event.getY();
 
 		postInvalidate();
 

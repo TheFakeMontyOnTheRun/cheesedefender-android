@@ -1,6 +1,3 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 import android.graphics.Bitmap;
@@ -13,10 +10,10 @@ import android.media.MediaPlayer;
  */
 public class Mouse extends GameObject {
 
-	static MediaPlayer killSound;
-	static MediaPlayer alarmSound;
-	static Bitmap mouse1;
-	static Bitmap mouse2;
+	private static MediaPlayer killSound;
+	private static MediaPlayer alarmSound;
+	private static Bitmap mouse1;
+	private static Bitmap mouse2;
 
 	public Mouse() {
 		super();

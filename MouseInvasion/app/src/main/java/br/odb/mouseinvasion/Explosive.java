@@ -1,6 +1,3 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 import android.graphics.Point;
@@ -9,7 +6,7 @@ import android.graphics.Point;
  * @author monty
  *
  */
-public interface Explosive {
+interface Explosive {
 	long getExplosionTime();
 
 	void explode();

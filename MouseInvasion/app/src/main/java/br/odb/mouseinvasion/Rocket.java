@@ -1,6 +1,3 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 import android.graphics.Bitmap;
@@ -10,7 +7,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.media.MediaPlayer;
-import android.util.FloatMath;
 
 /**
  * @author monty
@@ -18,12 +14,12 @@ import android.util.FloatMath;
  */
 public class Rocket extends GameObject implements Explosive {
 
-	static MediaPlayer fireSound;
-	static MediaPlayer explodeSound;
-	static Bitmap targetMark;
-	static Bitmap rocket1;
-	static Bitmap rocket2;
-	public Point target;
+	private static MediaPlayer fireSound;
+	private static MediaPlayer explodeSound;
+	private static Bitmap targetMark;
+	private static Bitmap rocket1;
+	private static Bitmap rocket2;
+	public final Point target;
 	private long explosionTime;
 
 	public Rocket() {
@@ -67,7 +63,6 @@ public class Rocket extends GameObject implements Explosive {
 		if (isExploding()) {
 			explosionTime -= delta;
 
-			// n��o esta mais explodindo...
 			if (!isExploding()) {
 				active = false;
 			}
@@ -121,7 +116,7 @@ public class Rocket extends GameObject implements Explosive {
 		int x = go.position.x - getPosition().x;
 		int y = go.position.y - getPosition().y;
 
-		return (FloatMath.sqrt((x * x) + (y * y)) < (getExplosionTime() / 50));
+		return (Math.sqrt((x * x) + (y * y)) < (getExplosionTime() / 50.0f));
 	}
 
 	@Override

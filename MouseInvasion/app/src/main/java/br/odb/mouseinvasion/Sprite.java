@@ -1,6 +1,3 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 import android.graphics.Bitmap;
@@ -14,13 +11,13 @@ import android.graphics.Point;
  *
  */
 public class Sprite implements Renderable, Updatable {
-	public Bitmap[] frames;
-	public int frame = 0;
-	public int frameCount = 1;
-	public Point position;
-	public boolean visible;
+	Bitmap[] frames;
+	private int frame = 0;
+	int frameCount = 1;
+	public final Point position;
+	boolean visible;
 
-	public Sprite() {
+	Sprite() {
 		position = new Point(0, 0);
 		frames = new Bitmap[1];
 		frames[0] = BitmapFactory.decodeResource(CheeseDefenderActivity.getInstance().getResources(), R.drawable.icon);

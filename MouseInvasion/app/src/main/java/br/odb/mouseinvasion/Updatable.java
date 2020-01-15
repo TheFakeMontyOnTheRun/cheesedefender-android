@@ -1,12 +1,9 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 /**
  * @author monty
  *
  */
-public interface Updatable {
+interface Updatable {
 	void update(long delta);
 }

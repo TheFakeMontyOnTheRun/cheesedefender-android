@@ -1,6 +1,3 @@
-/**
- *
- */
 package br.odb.mouseinvasion;
 
 import android.graphics.Bitmap;
@@ -18,7 +15,7 @@ public class BeamCheese extends BonusCheese {
 	private static Bitmap vertical;
 	private static Bitmap horizontal;
 	private static Bitmap multi;
-	private int kind;
+	private final int kind;
 
 	/**
 	 *
