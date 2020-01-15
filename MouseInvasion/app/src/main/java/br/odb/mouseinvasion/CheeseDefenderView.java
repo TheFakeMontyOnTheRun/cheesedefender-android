@@ -63,7 +63,7 @@ public class CheeseDefenderView extends View implements Updatable,
 			go = new BeamCheese(kind);
 		}
 
-		if (x < cheesePosition && go instanceof Explosive) {
+		if (x < cheesePosition) {
 			((Explosive) go).explode();
 		}
 
