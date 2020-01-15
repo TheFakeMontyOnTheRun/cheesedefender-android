@@ -1,67 +1,96 @@
-package br.odb.mouseinvasion
+package br.odb.mouseinvasion;
 
-import android.app.Activity
-import android.content.Intent
-import android.media.MediaPlayer
-import android.os.Bundle
-import android.view.View
-import android.widget.Button
+import android.app.Activity;
+import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
-class GameStartActivity : Activity(), View.OnClickListener {
-    var mp: MediaPlayer? = null
-    /**
-     * Called when the activity is first created.
-     */
-    public override fun onCreate(savedInstanceState: Bundle) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.startgamelayout)
-        val btn = findViewById(R.id.btnStartGame) as Button
-        btn.setOnClickListener(this)
-    }
+public class GameStartActivity extends Activity implements OnClickListener {
 
-    override fun onPause() {
-        if (mp != null) mp!!.pause()
-        mp = null
-        super.onPause()
-    }
+	private MediaPlayer mp;
 
-    override fun onDestroy() {
-        if (mp != null) mp!!.pause()
-        mp = null
-        super.onDestroy()
-    }
+	/**
+	 * Called when the activity is first created.
+	 */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-    override fun onStop() {
-        if (mp != null) mp!!.pause()
-        mp = null
-        super.onStop()
-    }
+		setContentView(R.layout.startgamelayout);
 
-    override fun onResume() {
-        super.onResume()
-        mp = MediaPlayer.create(this, R.raw.rvalkyri)
-        mp.setLooping(true)
-        mp.start()
-    }
+		Button btn = findViewById(R.id.btnStartGame);
+		btn.setOnClickListener(this);
+	}
 
-    override fun onClick(arg0: View) {
-        val intent = Intent(baseContext, CheeseDefenderActivity::class.java)
-        startActivityForResult(intent, 1)
-    }
+	@Override
+	protected void onPause() {
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-                val result = data.getStringExtra("result")
-                val intent = Intent(this, GameOverActivity::class.java)
-                val bundle = Bundle()
-                bundle.putString("result", result)
-                bundle.putString("tally", data.getStringExtra("tally"))
-                intent.putExtras(bundle)
-                this.startActivity(intent)
-            }
-        }
-        if (resultCode == RESULT_CANCELED) { //Write your code on no result return
-        }
-    }
+		if (mp != null)
+			mp.pause();
+
+		mp = null;
+
+		super.onPause();
+	}
+
+	@Override
+	protected void onDestroy() {
+
+		if (mp != null)
+			mp.pause();
+
+		mp = null;
+
+		super.onDestroy();
+	}
+
+	@Override
+	protected void onStop() {
+
+		if (mp != null)
+			mp.pause();
+
+		mp = null;
+
+		super.onStop();
+	}
+
+
+	@Override
+	protected void onResume() {
+
+		super.onResume();
+		mp = MediaPlayer.create(this, R.raw.rvalkyri);
+		mp.setLooping(true);
+		mp.start();
+	}
+
+	@Override
+	public void onClick(View arg0) {
+		Intent intent = new Intent(getBaseContext(), CheeseDefenderActivity.class);
+		startActivityForResult(intent, 1);
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == 1) {
+
+			if (resultCode == RESULT_OK) {
+
+				String result = data.getStringExtra("result");
+
+				Intent intent = new Intent(this, GameOverActivity.class);
+
+				Bundle bundle = new Bundle();
+				bundle.putString("result", result);
+				bundle.putString("tally", data.getStringExtra("tally"));
+				intent.putExtras(bundle);
+
+				this.startActivity(intent);
+			}
+		}
+	}
 }
