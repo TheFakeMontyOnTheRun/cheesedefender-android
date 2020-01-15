@@ -12,7 +12,6 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
 	public static boolean running = true;
 	private static CheeseDefenderActivity instance;
 	private CheeseDefenderView gameView;
-	private Thread updateThread;
 
 	public static CheeseDefenderActivity getInstance() {
 		return instance;
@@ -34,10 +33,14 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
 			getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_FULLSCREEN);
 		}
 
-
 		setContentView(gameView);
+	}
 
-		updateThread = new Thread(this);
+	@Override
+	protected void onResume() {
+		super.onResume();
+		running = true;
+		Thread updateThread = new Thread(this);
 		updateThread.start();
 	}
 
@@ -45,16 +48,15 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
 		getWindow().getDecorView().setSystemUiVisibility(SYSTEM_UI_FLAG_IMMERSIVE_STICKY | SYSTEM_UI_FLAG_FULLSCREEN | SYSTEM_UI_FLAG_HIDE_NAVIGATION);
 	}
 
-	public void onDestroy() {
+	public void onPause() {
+		super.onPause();
 		running = false;
-
-		super.onDestroy();
 	}
 
 	@Override
 	public void run() {
 		long t0 = 0;
-		long t1 = 0;
+		long t1;
 		while (running) {
 			try {
 				Thread.sleep(150);
