@@ -2,21 +2,28 @@ package br.odb.mouseinvasion;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.media.MediaPlayer;
 
 /**
  * @author monty
  *
  */
-public class Mouse extends GameObject {
+public class Mouse extends GameObject implements Explosive {
 
 	private static MediaPlayer killSound;
 	private static MediaPlayer alarmSound;
 	private static Bitmap mouse1;
 	private static Bitmap mouse2;
+	private long explosionTime;
+	boolean alive = true;
+	int speed = 5;
 
 	public Mouse() {
 		super();
+		speed = (int) (5 + Math.random() * 4);
 		super.frameCount = 2;
 		super.frames = new Bitmap[frameCount];
 
@@ -43,18 +50,85 @@ public class Mouse extends GameObject {
 			return;
 
 		super.update(delta);
-		super.position.x -= 5;
 
-		if (visible && super.position.x <= CheeseDefenderView.cheesePosition) {
-			super.visible = false;
-			CheeseDefenderView.cheesePosition += 5;
-			alarmSound.start();
+		if (alive) {
+			super.position.x -= speed;
+
+			if (visible && super.position.x <= CheeseDefenderView.cheesePosition) {
+				super.visible = false;
+				CheeseDefenderView.cheesePosition += 5;
+				alarmSound.start();
+			}
+
+		}
+
+		if (isExploding()) {
+			explosionTime -= 3 * delta;
+
+			if (!isExploding()) {
+				active = false;
+			}
+		}
+
+
+		if (!isExploding() && !alive ) {
+			active = false;
 		}
 	}
 
+	@Override
+	public void draw(Canvas canvas, Paint paint) {
+
+		if (explosionTime > 0) {
+			paint.setStyle(Paint.Style.FILL_AND_STROKE);
+			paint.setARGB((int) ((255 * explosionTime) / 2000), 255, 0, 0);
+			canvas.drawCircle(super.position.x, super.position.y,
+					explosionTime / 50, paint);
+		} else {
+			super.draw(canvas, paint);
+		}
+	}
+
+
 	public void kill() {
-		active = false;
-		visible = false;
-		killSound.start();
+		if (alive ) {
+			killSound.start();
+			alive = false;
+			explode();
+		}
+	}
+
+	@Override
+	public long getExplosionTime() {
+		return explosionTime;
+	}
+
+	@Override
+	public void explode() {
+		this.visible = false;
+		explosionTime = 2000;
+	}
+
+	@Override
+	public boolean isExploding() {
+		return explosionTime > 0;
+	}
+
+	@Override
+	public Point getPosition() {
+		return super.position;
+	}
+
+	@Override
+	public boolean isHit(GameObject go) {
+		int x = go.position.x - getPosition().x;
+		int y = go.position.y - getPosition().y;
+
+		return (Math.sqrt((x * x) + (y * y)) < (getExplosionTime() / 50.0f));
+	}
+
+	@Override
+	public boolean isArmed() {
+		return isExploding();
 	}
 }
