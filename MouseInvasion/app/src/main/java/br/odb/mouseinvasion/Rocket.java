@@ -44,15 +44,19 @@ public class Rocket extends GameObject implements Explosive {
 					.getInstance().getResources(), R.drawable.target);
 		}
 
-		if (fireSound == null)
-			fireSound = MediaPlayer.create(
-					CheeseDefenderActivity.getInstance(), R.raw.rocketlaunch);
+		if (CheeseDefenderView.getInstance().isSoundEnabled()) {
+			if (fireSound == null)
+				fireSound = MediaPlayer.create(
+						CheeseDefenderActivity.getInstance(), R.raw.rocketlaunch);
 
-		if (explodeSound == null)
-			explodeSound = MediaPlayer.create(
-					CheeseDefenderActivity.getInstance(), R.raw.explosion);
+			if (explodeSound == null)
+				explodeSound = MediaPlayer.create(
+						CheeseDefenderActivity.getInstance(), R.raw.explosion);
+		}
 
-		fireSound.start();
+		if ( fireSound != null ) {
+			fireSound.start();
+		}
 	}
 
 	@Override
@@ -97,7 +101,10 @@ public class Rocket extends GameObject implements Explosive {
 	public void explode() {
 		this.visible = false;
 		explosionTime = 2000;
-		explodeSound.start();
+
+		if ( explodeSound != null ) {
+			explodeSound.start();
+		}
 	}
 
 	public boolean isExploding() {

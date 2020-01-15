@@ -7,10 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 
-public class GameStartActivity extends Activity implements OnClickListener {
+public class GameStartActivity extends Activity implements OnClickListener, CompoundButton.OnCheckedChangeListener {
 
 	private MediaPlayer mp;
+	private Switch chkSound;
 
 	/**
 	 * Called when the activity is first created.
@@ -23,6 +27,10 @@ public class GameStartActivity extends Activity implements OnClickListener {
 
 		Button btn = findViewById(R.id.btnStartGame);
 		btn.setOnClickListener(this);
+
+		this.chkSound = ((Switch) findViewById(R.id.swEnableSound));
+		chkSound.setChecked(( (CheeseDefenderApplication) getApplication()).mayEnableSound());
+		chkSound.setOnCheckedChangeListener(this);
 	}
 
 	@Override
@@ -36,41 +44,24 @@ public class GameStartActivity extends Activity implements OnClickListener {
 		super.onPause();
 	}
 
-	@Override
-	protected void onDestroy() {
-
-		if (mp != null)
-			mp.pause();
-
-		mp = null;
-
-		super.onDestroy();
-	}
-
-	@Override
-	protected void onStop() {
-
-		if (mp != null)
-			mp.pause();
-
-		mp = null;
-
-		super.onStop();
-	}
-
 
 	@Override
 	protected void onResume() {
 
 		super.onResume();
-		mp = MediaPlayer.create(this, R.raw.rvalkyri);
-		mp.setLooping(true);
-		mp.start();
+		if (chkSound.isChecked()) {
+			mp = MediaPlayer.create(this, R.raw.rvalkyri);
+			mp.setLooping(true);
+			mp.start();
+		}
 	}
 
 	@Override
 	public void onClick(View arg0) {
 		Intent intent = new Intent(getBaseContext(), CheeseDefenderActivity.class);
+		Bundle bundle = new Bundle();
+		bundle.putBoolean("hasSound", chkSound.isChecked());
+		intent.putExtras(bundle);
 		startActivityForResult(intent, 1);
 	}
 
@@ -85,12 +76,25 @@ public class GameStartActivity extends Activity implements OnClickListener {
 				Intent intent = new Intent(this, GameOverActivity.class);
 
 				Bundle bundle = new Bundle();
+				bundle.putBoolean("hasSound", chkSound.isChecked());
 				bundle.putString("result", result);
 				bundle.putString("tally", data.getStringExtra("tally"));
 				intent.putExtras(bundle);
 
 				this.startActivity(intent);
 			}
+		}
+	}
+
+	@Override
+	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+		if (isChecked) {
+			mp = MediaPlayer.create(this, R.raw.rvalkyri);
+			mp.setLooping(true);
+			mp.start();
+		} else if (mp != null) {
+			mp.stop();
+			mp = null;
 		}
 	}
 }

@@ -30,20 +30,21 @@ public class CheeseDefenderView extends View implements Updatable,
 	private long gameTime;
 	private Context context;
 	private long tally;
+	private boolean enableSound;
 
-	public CheeseDefenderView(Context context) {
+	public CheeseDefenderView(Context context, boolean enableSound) {
 		super(context);
-		init(context);
+		init(context, enableSound);
 	}
 
-	public CheeseDefenderView(Context context, AttributeSet attrs) {
+	public CheeseDefenderView(Context context, AttributeSet attrs, boolean enableSound) {
 		super(context, attrs);
-		init(context);
+		init(context, enableSound);
 	}
 
-	public CheeseDefenderView(Context context, AttributeSet attrs, int defStyle) {
+	public CheeseDefenderView(Context context, AttributeSet attrs, int defStyle, boolean enableSound) {
 		super(context, attrs, defStyle);
-		init(context);
+		init(context, enableSound);
 	}
 
 	public static CheeseDefenderView getInstance() {
@@ -73,8 +74,9 @@ public class CheeseDefenderView extends View implements Updatable,
 
 	}
 
-	private void init(Context context) {
+	private void init(Context context, boolean enableSound) {
 		instance = this;
+		this.enableSound = enableSound;
 		this.context = context;
 		gameTime = 0;
 		t0 = System.currentTimeMillis();
@@ -262,5 +264,9 @@ public class CheeseDefenderView extends View implements Updatable,
 		toReturn.target.y = targetY;
 		gameObjects.add(toReturn);
 		return toReturn;
+	}
+
+	public boolean isSoundEnabled() {
+		return enableSound;
 	}
 }

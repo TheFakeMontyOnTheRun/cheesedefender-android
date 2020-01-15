@@ -32,16 +32,20 @@ public class BonusCheese extends GameObject implements Explosive {
 
 		super.frames[0] = cheese;
 
-		if (killSound == null)
-			killSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.cheesestolen);
+		if (CheeseDefenderView.getInstance().isSoundEnabled()) {
+			if (killSound == null)
+				killSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.cheesestolen);
 
-		if (spawnSound == null)
-			spawnSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.upgradeappears);
+			if (spawnSound == null)
+				spawnSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.upgradeappears);
 
-		if (explodeSound == null)
-			explodeSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.explosion);
+			if (explodeSound == null)
+				explodeSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.explosion);
+		}
 
-		spawnSound.start();
+		if (spawnSound != null) {
+			spawnSound.start();
+		}
 	}
 
 	@Override
@@ -86,13 +90,17 @@ public class BonusCheese extends GameObject implements Explosive {
 		else
 			CheeseDefenderView.cheesePosition = 0;
 
-		killSound.start();
+		if (killSound != null) {
+			killSound.start();
+		}
 	}
 
 
 	public void explode() {
 		explosionTime = 2000;
-		explodeSound.start();
+		if (explodeSound != null) {
+			explodeSound.start();
+		}
 		kill();
 	}
 

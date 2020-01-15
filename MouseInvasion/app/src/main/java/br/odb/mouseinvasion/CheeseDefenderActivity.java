@@ -25,7 +25,8 @@ public class CheeseDefenderActivity extends Activity implements Runnable {
 		super.onCreate(savedInstanceState);
 		instance = this;
 		running = true;
-		gameView = new CheeseDefenderView(this);
+
+		gameView = new CheeseDefenderView(this, getIntent().getExtras().getBoolean("hasSound"));
 
 		if (Build.VERSION.SDK_INT >= 29) {
 			enterStickyImmersiveMode();

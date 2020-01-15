@@ -35,11 +35,13 @@ public class Mouse extends GameObject implements Explosive {
 		super.frames[0] = mouse1;
 		super.frames[1] = mouse2;
 
-		if (killSound == null)
-			killSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.squeak);
+		if ( CheeseDefenderView.getInstance().isSoundEnabled()) {
+			if (killSound == null)
+				killSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.squeak);
 
-		if (alarmSound == null)
-			alarmSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.cheesestolen);
+			if (alarmSound == null)
+				alarmSound = MediaPlayer.create(CheeseDefenderActivity.getInstance(), R.raw.cheesestolen);
+		}
 	}
 
 	@Override
@@ -56,7 +58,9 @@ public class Mouse extends GameObject implements Explosive {
 			if (visible && super.position.x <= CheeseDefenderView.cheesePosition) {
 				super.visible = false;
 				CheeseDefenderView.cheesePosition += 5;
-				alarmSound.start();
+				if (alarmSound != null ) {
+					alarmSound.start();
+				}
 			}
 
 		}
@@ -91,7 +95,9 @@ public class Mouse extends GameObject implements Explosive {
 
 	public void kill() {
 		if (alive) {
-			killSound.start();
+			if (killSound != null) {
+				killSound.start();
+			}
 			alive = false;
 			explode();
 		}

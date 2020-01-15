@@ -14,9 +14,6 @@ public class GameOverActivity extends Activity implements OnClickListener {
 
 	private MediaPlayer mp;
 
-	/**
-	 * Called when the activity is first created.
-	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -30,22 +27,32 @@ public class GameOverActivity extends Activity implements OnClickListener {
 		tvTime = findViewById(R.id.tvTime);
 
 		tvTime.setText("You survived for: " + getIntent().getStringExtra("result") + " seconds! And you destroyed " + getIntent().getStringExtra("tally") + " invaders!");
-		mp = MediaPlayer.create(this, R.raw.sugarplumfairy);
-		mp.start();
-		mp.setLooping(true);
 	}
 
 	@Override
-	protected void onDestroy() {
+	protected void onResume() {
+		super.onResume();
 
-		mp.pause();
-		mp.stop();
-		super.onDestroy();
+		if (getIntent().getExtras().getBoolean("hasSound")) {
+			mp = MediaPlayer.create(this, R.raw.sugarplumfairy);
+			mp.start();
+			mp.setLooping(true);
+		}
+	}
+
+	@Override
+	protected void onPause() {
+
+		if (mp != null ) {
+			mp.pause();
+			mp.stop();
+		}
+
+		super.onPause();
 	}
 
 	@Override
 	public void onClick(View arg0) {
 		finish();
 	}
-
 }
