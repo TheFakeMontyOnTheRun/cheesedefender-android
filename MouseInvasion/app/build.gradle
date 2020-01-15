@@ -8,7 +8,7 @@ android {
 
 	defaultConfig {
 		applicationId "br.odb.mouseinvasion"
-		minSdkVersion 14
+		minSdkVersion 21
 		targetSdkVersion 29
 	}
 
