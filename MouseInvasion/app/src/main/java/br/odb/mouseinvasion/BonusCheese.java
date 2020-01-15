@@ -10,7 +10,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Point;
 import android.media.MediaPlayer;
-import android.util.FloatMath;
 
 /**
  * @author monty
@@ -124,9 +123,9 @@ public class BonusCheese extends GameObject implements Explosive {
 		int y = go.position.y - getPosition().y;
 
 		if (isExploding())
-			return (FloatMath.sqrt((x * x) + (y * y)) < (getExplosionTime() / 50));
+			return (Math.sqrt((x * x) + (y * y)) < (getExplosionTime() / 50.0f));
 		else
-			return (FloatMath.sqrt((x * x) + (y * y)) < (20));
+			return (Math.sqrt((x * x) + (y * y)) < (20));
 	}
 
 	@Override
