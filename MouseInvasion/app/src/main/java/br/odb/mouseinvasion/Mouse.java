@@ -129,7 +129,7 @@ public class Mouse extends GameObject implements Explosive {
 		int x = go.position.x - getPosition().x;
 		int y = go.position.y - getPosition().y;
 
-		return (Math.sqrt((x * x) + (y * y)) < (getExplosionTime() / 50.0f));
+		return ((Math.sqrt((x * x) + (y * y)) + speed) < (getExplosionTime() / 50.0f));
 	}
 
 	@Override
