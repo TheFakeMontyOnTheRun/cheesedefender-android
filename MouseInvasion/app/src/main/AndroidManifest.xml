@@ -5,7 +5,8 @@
 	android:versionCode="1"
 	android:versionName="1.0">
 
-	<uses-feature android:name="android.hardware.touchscreen"
+	<uses-feature
+		android:name="android.hardware.touchscreen"
 		android:required="true" />
 
 
@@ -17,9 +18,9 @@
 
 		<activity
 			android:name=".GameStartActivity"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
 			android:label="Cheese Defender"
-			android:screenOrientation="landscape">
+			android:screenOrientation="landscape"
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
@@ -34,13 +35,13 @@
 
 		<activity
 			android:name=".GameOverActivity"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-			android:screenOrientation="landscape" />
+			android:screenOrientation="landscape"
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
 
 		<activity
 			android:name=".CheeseDefenderActivity"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen"
-			android:screenOrientation="landscape" />
+			android:screenOrientation="landscape"
+			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
 
 
 	</application>

@@ -9,7 +9,6 @@ import android.media.MediaPlayer;
 
 /**
  * @author monty
- *
  */
 public class Mouse extends GameObject implements Explosive {
 
@@ -17,9 +16,9 @@ public class Mouse extends GameObject implements Explosive {
 	private static MediaPlayer alarmSound;
 	private static Bitmap mouse1;
 	private static Bitmap mouse2;
-	private long explosionTime;
 	boolean alive = true;
 	int speed = 5;
+	private long explosionTime;
 
 	public Mouse() {
 		super();
@@ -71,7 +70,7 @@ public class Mouse extends GameObject implements Explosive {
 		}
 
 
-		if (!isExploding() && !alive ) {
+		if (!isExploding() && !alive) {
 			active = false;
 		}
 	}
@@ -91,7 +90,7 @@ public class Mouse extends GameObject implements Explosive {
 
 
 	public void kill() {
-		if (alive ) {
+		if (alive) {
 			killSound.start();
 			alive = false;
 			explode();

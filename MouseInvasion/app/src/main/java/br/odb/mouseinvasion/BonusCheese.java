@@ -10,7 +10,6 @@ import android.media.MediaPlayer;
 
 /**
  * @author monty
- *
  */
 public class BonusCheese extends GameObject implements Explosive {
 

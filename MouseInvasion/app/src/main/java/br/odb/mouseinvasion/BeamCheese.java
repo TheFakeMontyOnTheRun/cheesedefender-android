@@ -8,7 +8,6 @@ import android.graphics.Paint.Style;
 
 /**
  * @author monty
- *
  */
 public class BeamCheese extends BonusCheese {
 

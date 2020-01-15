@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 /**
  * @author monty
- *
  */
 public class CheeseDefenderView extends View implements Updatable,
 		OnTouchListener {
@@ -108,7 +107,7 @@ public class CheeseDefenderView extends View implements Updatable,
 
 		paint.setStyle(Style.FILL_AND_STROKE);
 		paint.setColor(Color.GREEN);
-		canvas.drawRect(0, ((getHeight() )) - ((getHeight() * timeSinceLastLaunch) / SECONDS_2), 10, getHeight(), paint);
+		canvas.drawRect(0, ((getHeight())) - ((getHeight() * timeSinceLastLaunch) / SECONDS_2), 10, getHeight(), paint);
 
 		paint.setTextSize(20);
 		canvas.drawText("Score: " + tally, getWidth() / 2, getHeight() - 10, paint);

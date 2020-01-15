@@ -4,7 +4,6 @@ import android.graphics.Point;
 
 /**
  * @author monty
- *
  */
 interface Explosive {
 	long getExplosionTime();

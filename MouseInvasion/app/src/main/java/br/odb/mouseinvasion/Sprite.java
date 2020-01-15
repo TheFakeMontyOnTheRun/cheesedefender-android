@@ -8,14 +8,13 @@ import android.graphics.Point;
 
 /**
  * @author monty
- *
  */
 public class Sprite implements Renderable, Updatable {
-	Bitmap[] frames;
-	private int frame = 0;
-	int frameCount = 1;
 	public final Point position;
+	Bitmap[] frames;
+	int frameCount = 1;
 	boolean visible;
+	private int frame = 0;
 
 	Sprite() {
 		position = new Point(0, 0);

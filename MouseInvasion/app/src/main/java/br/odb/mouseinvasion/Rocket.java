@@ -10,7 +10,6 @@ import android.media.MediaPlayer;
 
 /**
  * @author monty
- *
  */
 public class Rocket extends GameObject implements Explosive {
 
