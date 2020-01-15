@@ -84,7 +84,7 @@ public class Mouse extends GameObject implements Explosive {
 
 		if (explosionTime > 0) {
 			paint.setStyle(Paint.Style.FILL_AND_STROKE);
-			paint.setARGB((int) ((255 * explosionTime) / 2000), 255, 0, 0);
+			paint.setARGB((int) ((255 * explosionTime) / 2000), 128, 0, 255);
 			canvas.drawCircle(super.position.x, super.position.y,
 					explosionTime / 50, paint);
 		} else {
