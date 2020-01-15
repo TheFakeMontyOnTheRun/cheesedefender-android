@@ -208,7 +208,7 @@ public class CheeseDefenderView extends View implements Updatable,
 			addEntity(getWidth(), (int) (Math.random() * getHeight()), 0);
 		}
 
-		if (tally % 11 == 10 && killed) {
+		if (tally % 57 == 10 && killed) {
 			addEntity((int) (Math.random() * getWidth()),
 					(int) (Math.random() * getHeight()), (int) ((Math.random() * 4) + 2));
 		}
