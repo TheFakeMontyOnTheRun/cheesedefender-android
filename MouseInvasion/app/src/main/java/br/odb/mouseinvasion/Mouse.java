@@ -66,7 +66,7 @@ public class Mouse extends GameObject implements Explosive {
 		}
 
 		if (isExploding()) {
-			explosionTime -= 3 * delta;
+			explosionTime -= delta;
 
 			if (!isExploding()) {
 				active = false;
