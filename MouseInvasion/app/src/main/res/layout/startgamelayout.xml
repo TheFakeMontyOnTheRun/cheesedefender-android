@@ -25,15 +25,6 @@
 			android:textSize="50sp" />
 
 		<TextView
-			android:id="@+id/textView3"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="4"
-			android:text="mouse invasion"
-			android:textColor="#F900"
-			android:textSize="35sp" />
-
-		<TextView
 			android:id="@+id/txtCredits"
 			android:layout_width="wrap_content"
 			android:layout_height="0dp"
