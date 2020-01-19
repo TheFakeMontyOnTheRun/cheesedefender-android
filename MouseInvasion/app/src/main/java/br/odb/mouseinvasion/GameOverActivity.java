@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class GameOverActivity extends Activity implements OnClickListener {
+public class GameOverActivity extends Activity {
 
 	private MediaPlayer mp;
 
@@ -19,9 +19,6 @@ public class GameOverActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.gameoverlayout);
-
-		Button btn = findViewById(R.id.btnOk);
-		btn.setOnClickListener(this);
 
 		TextView tvTime;
 		tvTime = findViewById(R.id.tvTime);
@@ -49,10 +46,5 @@ public class GameOverActivity extends Activity implements OnClickListener {
 		}
 
 		super.onPause();
-	}
-
-	@Override
-	public void onClick(View arg0) {
-		finish();
 	}
 }
