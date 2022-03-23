@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:background="@drawable/mouseinvasion"
 	android:orientation="vertical">
 
 	<LinearLayout
-		android:id="@+id/linearLayout1"
-		android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
 		android:layout_height="match_parent"
 		android:layout_margin="32dp"
 		android:background="#8FFF"
@@ -16,30 +14,28 @@
 		android:padding="10dp">
 
 		<TextView
-			android:id="@+id/textView"
-			android:layout_width="match_parent"
+            android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="2"
-			android:text="Cheese Defender"
+			android:text="@string/cheese_defender"
 			android:textColor="#F00"
 			android:textSize="50sp" />
 
 		<TextView
-			android:id="@+id/txtCredits"
 			android:layout_width="wrap_content"
 			android:layout_height="0dp"
 			android:layout_weight="1"
-			android:text="Code and still art by: Daniel Monteiro (A.K.A. MontyOnTheRun). Concept and in-game assets by: Iwan Gabovitch (A.K.A. Qubodup)"
+			android:text="@string/credits"
 			android:textAppearance="?android:attr/textAppearanceSmall"
-			android:textColor="#900" />
+			android:textColor="#4E342E" />
 
-		<Switch
+		<com.google.android.material.switchmaterial.SwitchMaterial
 			android:id="@+id/swEnableSound"
 			android:layout_width="match_parent"
 			android:layout_height="0dp"
 			android:layout_weight="1"
-			android:text="Sound"
-			android:textColor="#900" />
+			android:text="@string/sound"
+			android:textColor="#795548" />
 
 		<Button
 			android:id="@+id/btnStartGame"
@@ -48,7 +44,7 @@
 			android:layout_gravity="center"
 			android:layout_marginTop="10dip"
 			android:layout_weight="2"
-			android:text="Start" />
+			android:text="@string/start" />
 	</LinearLayout>
 
 </LinearLayout>

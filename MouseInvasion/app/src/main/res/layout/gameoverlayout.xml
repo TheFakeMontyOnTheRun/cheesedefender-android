@@ -6,8 +6,7 @@
 	android:orientation="horizontal">
 
 	<LinearLayout
-		android:id="@+id/linearLayout1"
-		android:layout_width="fill_parent"
+        android:layout_width="fill_parent"
 		android:layout_height="match_parent"
 		android:layout_margin="32dp"
 		android:layout_marginLeft="10dip"
@@ -18,13 +17,12 @@
 		android:padding="10dp">
 
 		<TextView
-			android:id="@+id/textView2"
-			android:layout_width="fill_parent"
+            android:layout_width="fill_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginLeft="5dip"
 			android:layout_marginTop="2dip"
 			android:layout_marginRight="5dip"
-			android:text="Game Over"
+			android:text="@string/game_over"
 			android:textColor="#f00"
 			android:textSize="50sp" />
 
@@ -33,8 +31,8 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:gravity="center_horizontal"
-			android:text="TextView"
-			android:textColor="#FF0000"
+			android:text="@string/outcome_score"
+			android:textColor="#616161"
 			android:textSize="20sp" />
 
 	</LinearLayout>

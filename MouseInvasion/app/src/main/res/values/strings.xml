@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<string name="app_name">MouseInvasion</string>
+    <string name="outcome_score">TextView</string>
+    <string name="game_over">Game Over</string>
+    <string name="cheese_defender">Cheese Defender</string>
+    <string name="credits">Code and still art by: Daniel Monteiro (A.K.A. MontyOnTheRun). Concept and in-game assets by: Iwan Gabovitch (A.K.A. Qubodup)</string>
+    <string name="start">Start</string>
+    <string name="sound">Sound</string>
 </resources>

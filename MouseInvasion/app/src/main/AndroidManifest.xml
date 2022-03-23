@@ -1,49 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="br.odb.mouseinvasion"
-	android:installLocation="auto"
-	android:versionCode="1"
-	android:versionName="1.0">
+    package="br.odb.mouseinvasion"
+    android:installLocation="auto"
+    android:versionCode="1"
+    android:versionName="1.0">
 
-	<uses-feature
-		android:name="android.hardware.touchscreen"
-		android:required="true" />
-
-
-	<application
-		android:allowBackup="false"
-		android:name=".CheeseDefenderApplication"
-		android:icon="@drawable/cheese"
-		android:label="@string/app_name">
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="true" />
 
 
-		<activity
-			android:name=".GameStartActivity"
-			android:label="Cheese Defender"
-			android:screenOrientation="landscape"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-
-			<intent-filter>
-				<action android:name="android.intent.action.VIEW" />
-				<category android:name="android.intent.category.DEFAULT" />
-			</intent-filter>
-
-		</activity>
-
-		<activity
-			android:name=".GameOverActivity"
-			android:screenOrientation="landscape"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-
-		<activity
-			android:name=".CheeseDefenderActivity"
-			android:screenOrientation="landscape"
-			android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+    <application
+        android:name=".CheeseDefenderApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/cheese"
+        android:label="@string/app_name">
 
 
-	</application>
+        <activity
+            android:name=".GameStartActivity"
+            android:exported="true"
+            android:label="Cheese Defender"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity
+            android:name=".GameOverActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+
+        <activity
+            android:name=".CheeseDefenderActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
+
+
+    </application>
 </manifest>
