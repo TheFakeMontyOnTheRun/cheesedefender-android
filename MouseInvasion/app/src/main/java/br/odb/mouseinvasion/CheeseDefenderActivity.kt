@@ -7,63 +7,63 @@ import androidx.appcompat.app.AppCompatActivity
 
 class CheeseDefenderActivity : AppCompatActivity(), Runnable {
 
-    private var gameView: CheeseDefenderView? = null
+	private var gameView: CheeseDefenderView? = null
 
-    public override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+	public override fun onCreate(savedInstanceState: Bundle?) {
+		super.onCreate(savedInstanceState)
 
-        running = true
-        gameView = CheeseDefenderView(this, intent.extras!!.getBoolean("hasSound"))
+		running = true
+		gameView = CheeseDefenderView(this, intent.extras!!.getBoolean("hasSound"))
 
-        if (Build.VERSION.SDK_INT >= 29) {
-            enterStickyImmersiveMode()
-        } else {
-            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        }
+		if (Build.VERSION.SDK_INT >= 29) {
+			enterStickyImmersiveMode()
+		} else {
+			window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+		}
 
-        setContentView(gameView)
-    }
+		setContentView(gameView)
+	}
 
-    override fun onResume() {
-        super.onResume()
-        running = true
-        val updateThread = Thread(this)
-        updateThread.start()
-    }
+	override fun onResume() {
+		super.onResume()
+		running = true
+		val updateThread = Thread(this)
+		updateThread.start()
+	}
 
-    private fun enterStickyImmersiveMode() {
-        window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-                    View.SYSTEM_UI_FLAG_FULLSCREEN or
-                    View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-    }
+	private fun enterStickyImmersiveMode() {
+		window.decorView.systemUiVisibility =
+			View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+					View.SYSTEM_UI_FLAG_FULLSCREEN or
+					View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+	}
 
-    public override fun onPause() {
-        super.onPause()
+	public override fun onPause() {
+		super.onPause()
 
-        running = false
-    }
+		running = false
+	}
 
-    override fun run() {
-        var t0: Long = 0
-        var t1: Long
+	override fun run() {
+		var t0: Long = 0
+		var t1: Long
 
-        while (running) {
-            try {
-                Thread.sleep(150)
-            } catch (e: InterruptedException) {
-                e.printStackTrace()
-            }
-            t1 = System.currentTimeMillis()
-            if (gameView != null /* && gameView.hasFocus() */) {
-                gameView!!.update(t1 - t0)
-                gameView!!.postInvalidate()
-            }
-            t0 = System.currentTimeMillis()
-        }
-    }
+		while (running) {
+			try {
+				Thread.sleep(150)
+			} catch (e: InterruptedException) {
+				e.printStackTrace()
+			}
+			t1 = System.currentTimeMillis()
+			if (gameView != null) {
+				gameView!!.update(t1 - t0)
+				gameView!!.postInvalidate()
+			}
+			t0 = System.currentTimeMillis()
+		}
+	}
 
-    companion object {
-        var running = true
-    }
+	companion object {
+		var running = true
+	}
 }
