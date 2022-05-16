@@ -61,7 +61,7 @@ open class BonusCheese(context: Context, soundEnabled: Boolean) : GameObject(con
 		val x: Int = go.position.x - position.x
 		val y: Int = go.position.y - position.y
 
-		return if (isExploding) sqrt((x * x + y * y).toDouble()) < explosionTime / 50.0f else sqrt(
+		return if (isExploding) sqrt((x * x + y * y).toDouble()) < explosionTime / 40.0f else sqrt(
 			(x * x + y * y).toDouble()
 		) < 20
 	}

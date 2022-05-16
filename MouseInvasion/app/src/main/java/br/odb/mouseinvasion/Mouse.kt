@@ -11,11 +11,12 @@ import kotlin.math.sqrt
 class Mouse(context: Context, soundEnabled: Boolean) : GameObject(context), Explosive {
 
 	private var alive = true
-	private val speed: Int = (5 + Math.random() * 4).toInt()
+
+	private val speed: Int = ((10 + tally) + Math.random() * 4).toInt()
 
 	companion object {
 		const val EXPLOSION_TIME: Long = 3000
-
+		var tally = 0.0f
 		private var killSound: MediaPlayer? = null
 		private var alarmSound: MediaPlayer? = null
 		private var mouse1: Bitmap? = null
@@ -94,6 +95,7 @@ class Mouse(context: Context, soundEnabled: Boolean) : GameObject(context), Expl
 			}
 			alive = false
 			explode()
+			tally += 1f
 		}
 	}
 
@@ -110,7 +112,7 @@ class Mouse(context: Context, soundEnabled: Boolean) : GameObject(context), Expl
 		val x: Int = go.position.x - position.x
 		val y: Int = go.position.y - position.y
 
-		return sqrt((x * x + y * y).toDouble()) + speed < explosionTime / 50.0f
+		return sqrt((x * x + y * y).toDouble()) + speed < explosionTime / 40.0f
 	}
 
 	override val isArmed: Boolean
