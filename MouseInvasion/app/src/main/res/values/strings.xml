@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">MouseInvasion</string>
+    <string name="app_name">MouseInvasion</string>
     <string name="outcome_score">TextView</string>
     <string name="game_over">Game Over</string>
     <string name="cheese_defender">Cheese Defender</string>

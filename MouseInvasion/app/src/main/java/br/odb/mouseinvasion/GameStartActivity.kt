@@ -48,6 +48,7 @@ class GameStartActivity : AppCompatActivity(), View.OnClickListener,
         startActivityForResult(intent, 1)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

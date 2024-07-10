@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:background="@drawable/mouseinvasion"
-	android:orientation="vertical">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/mouseinvasion"
+    android:orientation="vertical">
 
-	<LinearLayout
+    <LinearLayout
         android:layout_width="fill_parent"
-		android:layout_height="match_parent"
-		android:layout_margin="32dp"
-		android:background="#8FFF"
-		android:orientation="vertical"
-		android:padding="10dp">
+        android:layout_height="match_parent"
+        android:layout_margin="32dp"
+        android:background="#8FFF"
+        android:orientation="vertical"
+        android:padding="10dp">
 
-		<TextView
+        <TextView
             android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="2"
-			android:text="@string/cheese_defender"
-			android:textColor="#F00"
-			android:textSize="50sp" />
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:text="@string/cheese_defender"
+            android:textColor="#F00"
+            android:textSize="50sp" />
 
-		<TextView
-			android:layout_width="wrap_content"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-			android:text="@string/credits"
-			android:textAppearance="?android:attr/textAppearanceSmall"
-			android:textColor="#4E342E" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/credits"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="#4E342E" />
 
-		<com.google.android.material.switchmaterial.SwitchMaterial
-			android:id="@+id/swEnableSound"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_weight="1"
-			android:text="@string/sound"
-			android:textColor="#795548" />
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/swEnableSound"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="@string/sound"
+            android:textColor="#795548" />
 
-		<Button
-			android:id="@+id/btnStartGame"
-			android:layout_width="match_parent"
-			android:layout_height="0dp"
-			android:layout_gravity="center"
-			android:layout_marginTop="10dip"
-			android:layout_weight="2"
-			android:text="@string/start" />
-	</LinearLayout>
+        <Button
+            android:id="@+id/btnStartGame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dip"
+            android:layout_weight="2"
+            android:text="@string/start" />
+    </LinearLayout>
 
 </LinearLayout>
